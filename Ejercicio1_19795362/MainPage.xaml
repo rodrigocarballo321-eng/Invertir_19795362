@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ejercicio1_19795362.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light=#F6F4FF, Dark=#121018}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="CardColor">#FFFFFF</Color>
+            <Color x:Key="CardColorDark">#1C1927</Color>
+            <Color x:Key="FieldColor">#F1EEFC</Color>
+            <Color x:Key="FieldColorDark">#262235</Color>
+
+            
+            <Style x:Key="FieldCaption" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="4,0,0,4" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+            </Style>
+
+            <Style x:Key="FieldBorder" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 14" />
+                <Setter Property="StrokeThickness" Value="1.5" />
+                <Setter Property="Stroke" Value="{AppThemeBinding Light=#DCD4F7, Dark=#3A3454}" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FieldColor}, Dark={StaticResource FieldColorDark}}" />
+                <Setter Property="Padding" Value="14,0" />
+            </Style>
+
+            <Style x:Key="FieldEntry" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="52" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Keyboard" Value="Numeric" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=#1F1B2E, Dark=#F3F0FF}" />
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light=#9A93B8, Dark=#7C7597}" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <Border StrokeThickness="0"
+                    StrokeShape="RoundRectangle 0,0,36,36"
+                    Padding="28,44,28,40">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#512BD4" Offset="0.0" />
+                        <GradientStop Color="#7B4DFF" Offset="0.6" />
+                        <GradientStop Color="#D600AA" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <VerticalStackLayout Spacing="8">
+                    <!--Modo oscuro-->
+                    <Button x:Name="ThemeButton"
+                            Text="Modo oscuro"
+                            Clicked="OnCambiarTemaClicked"
+                            SemanticProperties.Description="Cambiar entre modo claro y modo oscuro"
+                            HorizontalOptions="End"
+                            Margin="0,0,0,8"
+                            HeightRequest="40"
+                            Padding="16,0"
+                            CornerRadius="20"
+                            FontSize="13"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            BackgroundColor="#33FFFFFF" />
+                    <Label Text="EJERCICIO 1"
+                           FontSize="12"
+                           FontAttributes="Bold"
+                           CharacterSpacing="3"
+                           TextColor="#E6DEFF"
+                           HorizontalOptions="Center" />
+                    <Label Text="Orden Inverso"
+                           FontSize="32"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center" />
+                    <Label Text="Ingrese cuatro números enteros:"
+                           FontSize="15"
+                           TextColor="#EFE9FF"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Margin="20,-22,20,0"
+                    Padding="22"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 24"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource CardColor}, Dark={StaticResource CardColorDark}}">
+                <Border.Shadow>
+                    <Shadow Brush="#512BD4" Opacity="0.22" Radius="24" Offset="0,10" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="20">
+
+                    <Grid ColumnDefinitions="*,*"
+                          RowDefinitions="Auto,Auto"
+                          ColumnSpacing="14"
+                          RowSpacing="16">
+
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                            <Label Text="NÚMERO A" Style="{StaticResource FieldCaption}" />
+                            <Border Style="{StaticResource FieldBorder}">
+                                <Entry x:Name="EntryA" Placeholder="Número A" Style="{StaticResource FieldEntry}" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                            <Label Text="NÚMERO B" Style="{StaticResource FieldCaption}" />
+                            <Border Style="{StaticResource FieldBorder}">
+                                <Entry x:Name="EntryB" Placeholder="Número B" Style="{StaticResource FieldEntry}" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                            <Label Text="NÚMERO C" Style="{StaticResource FieldCaption}" />
+                            <Border Style="{StaticResource FieldBorder}">
+                                <Entry x:Name="EntryC" Placeholder="Número C" Style="{StaticResource FieldEntry}" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                            <Label Text="NÚMERO D" Style="{StaticResource FieldCaption}" />
+                            <Border Style="{StaticResource FieldBorder}">
+                                <Entry x:Name="EntryD" Placeholder="Número D" Style="{StaticResource FieldEntry}" />
+                            </Border>
+                        </VerticalStackLayout>
+
+                    </Grid>
+
+                    <Button Text="Mostrar en Orden Inverso"
+                            Clicked="OnInvertirClicked"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HeightRequest="54"
+                            CornerRadius="16">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#512BD4" Offset="0.0" />
+                                <GradientStop Color="#8B5CFF" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Shadow>
+                            <Shadow Brush="#512BD4" Opacity="0.35" Radius="14" Offset="0,6" />
+                        </Button.Shadow>
+                    </Button>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Margin="20,18,20,32"
+                    Padding="20,18"
+                    StrokeThickness="1.5"
+                    StrokeShape="RoundRectangle 20"
+                    Stroke="{AppThemeBinding Light=#DCD4F7, Dark=#3A3454}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource CardColor}, Dark={StaticResource CardColorDark}}">
+                <Border.Triggers>
+                    <DataTrigger TargetType="Border"
+                                 Binding="{Binding Source={x:Reference ResultadoLabel}, Path=Text.Length}"
+                                 Value="0">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Border.Triggers>
+
+                <Label x:Name="ResultadoLabel"
+                       Text=""
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="Green"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center" />
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
